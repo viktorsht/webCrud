@@ -1,8 +1,8 @@
 class User{
-  final int id;
+  final String id;
   final String name;
   final String telefone;
-  final String nascimento;
+  final int nascimento;
 
   User({required this.id, required this.name, required this.telefone, required this.nascimento});
 

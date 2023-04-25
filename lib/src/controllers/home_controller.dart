@@ -7,7 +7,9 @@ class UsersAppController{
 
   Future<List<User>> getListUserApi() async {
     final url = Uri.parse(DataApi.mockapiUrl);
-    final response = await http.get(url);
+    final response = await http.get(url, headers: {
+        'Content-type': 'application/json',
+      },);
 
     List<User> users = [];
     

@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.secundaryColorApp,
-        title: const Text("CRUD WEB", 
+        title: const Text('CRUD Web Básico', 
           style: TextStyle(
               color: AppColors.blackColorApp,
               fontWeight: FontWeight.bold,

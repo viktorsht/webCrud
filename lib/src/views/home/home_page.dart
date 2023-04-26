@@ -1,7 +1,5 @@
 import 'package:crudweb/src/controllers/home_controller.dart';
-import 'package:crudweb/src/models/user_model.dart';
 import 'package:crudweb/src/theme/app_colors.dart';
-import 'package:crudweb/src/views/home/componentes/home_barra.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,26 +11,62 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  bool _loadedData = false;
+  final controller = HomeController();
 
-  List<User> usersList = [];
+  _sucess(){
+    return ListView.builder(
+      itemCount: controller.users.length,
+      itemBuilder: (BuildContext context, int index) {
+        var user = controller.users[index];
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Usuário: ${user.name}"),
+          ],
+        );
+      },
+    );
+  }
 
-  Future<void> loadData() async {
-    List<User> lista = [];
-    final usersAppController = UsersAppController();
-    lista = await usersAppController.getListUserApi();
-    setState(() {
-    _loadedData = true;
-      usersList = lista;
-    });
+  _start(){
+    return Container();
+  }
+
+  _loading(){
+    return const Center(child: CircularProgressIndicator());
+  }
+
+  _error(){
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          controller.start();
+        },
+        child: const Text("Tentar Novamente"),
+      ),
+    );
+  }
+  
+  stateManager(HomeState state){
+    switch (state) {
+      case HomeState.start:
+        return _start();
+      case HomeState.error:
+        return _error();
+      case HomeState.sucess:
+        return _sucess();
+      case HomeState.loading:
+        return _loading();
+      default:
+        return _start();
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    loadData();
+    controller.start();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -49,32 +83,10 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: SingleChildScrollView(
-        child: Expanded(
-          child: ListView(
-            children: [
-              Container(color: AppColors.blackColorApp,)
-            ]
-          )
-        ),
-      ),
+      body: AnimatedBuilder(
+        animation: controller.state,
+        builder:(context, child) => stateManager(controller.state.value),
+      )
     );
   }
 }
-
-
-/*
-
-!_loadedData ? const CircularProgressIndicator() : ListView.builder(
-        itemCount: usersList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("Usuário: ${usersList[index].name}"),
-            ],
-          );
-        },
-      ),
-
-*/

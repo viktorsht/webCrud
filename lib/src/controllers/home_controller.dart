@@ -1,29 +1,22 @@
-import 'dart:convert';
-import 'package:crudweb/src/api/api.dart';
 import 'package:crudweb/src/models/user_model.dart';
-import 'package:http/http.dart' as http;
+import 'package:crudweb/src/repositories/user_repository.dart';
+import 'package:flutter/material.dart';
 
-class UsersAppController{
+class HomeController{
+  List<User> users = [];
+  final _repository = UserRepository();
+  final state = ValueNotifier <HomeState>(HomeState.start);
 
-  Future<List<User>> getListUserApi() async {
-    final url = Uri.parse(DataApi.mockapiUrl);
-    final response = await http.get(url, headers: {
-        'Content-type': 'application/json',
-      },);
-
-    List<User> users = [];
-    
-    if (response.statusCode == 200) {
-      final list = jsonDecode(response.body) as List;
-      for (var json in list) {
-        final recipiente = User.fromJson(json);
-        users.add(recipiente);
-      }
+  Future start() async {
+    state.value = HomeState.loading;
+    try {
+      users = await _repository.getListUserApi();
+      state.value = HomeState.sucess;
+    } catch (e) {
+      state.value = HomeState.error;
     }
-    else {
-      throw Exception('Erro na requisição: ${response.statusCode}');
-    }
-    return users;
   }
-  
+
 }
+
+enum HomeState {start, loading, sucess, error}

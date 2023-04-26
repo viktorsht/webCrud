@@ -7,14 +7,17 @@ class HomeBarra extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ElevatedButton(
-          onPressed: (){}, 
-          style: ButtonApp.themeButtonAppSecundary,
-          child: const Text("Adicinar usuário", style: TextStyle(color: AppColors.secundaryColorApp),)
-          ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Row(
+        children: [
+          ElevatedButton(
+            onPressed: (){}, 
+            style: ButtonApp.themeButtonAppSecundary,
+            child: const Text("Adicinar usuário", style: TextStyle(color: AppColors.blackColorApp),)
+            ),
+        ],
+      ),
     );
   }
 }

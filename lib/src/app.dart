@@ -1,5 +1,7 @@
+import 'package:crudweb/src/routers/routers_app.dart';
 import 'package:crudweb/src/theme/app_theme.dart';
 import 'package:crudweb/src/views/home/home_page.dart';
+import 'package:crudweb/src/views/register/register_user.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -12,11 +14,11 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
       darkTheme: AppTheme.themeDark,
-      initialRoute: '/',
+      initialRoute: RoutersApp.root,
       routes: {
-        '/' : (context) =>const HomePage(),
-        '/home' : (context) =>const HomePage(),
-        //'/login' :(context) => const LoginApp(),
+        RoutersApp.root : (context) => const HomePage(),
+        RoutersApp.home : (context) => const HomePage(),
+        RoutersApp.register : (context) => const RegisterUser(),
       },
     );
   }

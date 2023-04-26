@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class ButtonApp{
 
   static ButtonStyle themeButtonAppPrimary = ElevatedButton.styleFrom(
-      backgroundColor: AppColors.primaryColorApp,
+      backgroundColor: AppColors.secundaryColorApp,
       minimumSize: const Size(130, 50),
       padding: const EdgeInsets.symmetric(horizontal: 30),
       shape: const RoundedRectangleBorder(

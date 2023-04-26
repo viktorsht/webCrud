@@ -1,5 +1,8 @@
 import 'package:crudweb/src/controllers/home_controller.dart';
+import 'package:crudweb/src/routers/routers_app.dart';
+import 'package:crudweb/src/theme/app_buttons.dart';
 import 'package:crudweb/src/theme/app_colors.dart';
+import 'package:crudweb/src/views/home/componentes/home_list_user.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,17 +17,37 @@ class _HomePageState extends State<HomePage> {
   final controller = HomeController();
 
   _sucess(){
-    return ListView.builder(
-      itemCount: controller.users.length,
-      itemBuilder: (BuildContext context, int index) {
-        var user = controller.users[index];
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Usuário: ${user.name}"),
-          ],
-        );
-      },
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        const SizedBox(height: 16), // espaço entre o botão e a appBar
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Container(
+            alignment: Alignment.centerLeft,
+            child: ElevatedButton(
+              style: ButtonApp.themeButtonAppPrimary,
+              onPressed: () {
+                Navigator.of(context).pushNamed(RoutersApp.register);
+              },
+              child: const Text('Add User', style: TextStyle(color: AppColors.blackColorApp, fontWeight: FontWeight.w500),),
+            ),
+          ),
+        ),
+        const SizedBox(height: 16), // espaço entre o botão e a ListView
+        Expanded(
+          child: Align(
+            alignment: Alignment.center,
+            child: ListView.builder(
+              itemCount: controller.users.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListUser(user: controller.users[index]);
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -65,17 +88,15 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-
     controller.start();
-    
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: AppColors.grayColorApp,
-        title: const Text("HOME PAGE", 
+        backgroundColor: AppColors.secundaryColorApp,
+        title: const Text("CRUD WEB", 
           style: TextStyle(
               color: AppColors.blackColorApp,
               fontWeight: FontWeight.bold,
@@ -84,6 +105,13 @@ class _HomePageState extends State<HomePage> {
           ),
         centerTitle: true,
         elevation: 0,
+        actions: [
+          IconButton(
+            onPressed: (){}, 
+            color: AppColors.blackColorApp,
+            icon: const Icon(Icons.search),
+          ),
+        ],
       ),
       body: AnimatedBuilder(
         animation: controller.state,

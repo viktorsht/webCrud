@@ -1,5 +1,6 @@
 import 'package:crudweb/src/routers/routers_app.dart';
 import 'package:crudweb/src/theme/app_theme.dart';
+import 'package:crudweb/src/views/edit/edit_user_page.dart';
 import 'package:crudweb/src/views/home/home_page.dart';
 import 'package:crudweb/src/views/register/register_user_page.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class App extends StatelessWidget {
         RoutersApp.root : (context) => const HomePage(),
         RoutersApp.home : (context) => const HomePage(),
         RoutersApp.register : (context) => const RegisterUserPage(),
+        RoutersApp.edit : (context) => const EditUserPage(),
       },
     );
   }

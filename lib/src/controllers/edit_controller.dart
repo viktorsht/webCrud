@@ -2,15 +2,15 @@ import 'package:crudweb/src/models/user_model.dart';
 import 'package:crudweb/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 
-class HomeController{
-  List<User> users = [];
+class EditController{
   final _repository = UserRepository();
+  User user = User();
   final state = ValueNotifier <HomeState>(HomeState.start);
 
-  Future start() async {
+  Future start(String idUser) async {
     state.value = HomeState.loading;
     try {
-      users = await _repository.getListUsersApi();
+      user = await _repository.updateUserApi(idUser);
       state.value = HomeState.sucess;
     } catch (e) {
       state.value = HomeState.error;

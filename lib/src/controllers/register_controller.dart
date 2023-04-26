@@ -1,9 +1,9 @@
 import 'package:crudweb/src/models/user_model.dart';
-import 'package:crudweb/src/repositories/register_repository.dart';
+import 'package:crudweb/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 
 class RegisterController{
-  final _repository = RegisterRepository();
+  final _repository = UserRepository();
   User user = User();
   final state = ValueNotifier <HomeState>(HomeState.start);
 
@@ -11,10 +11,8 @@ class RegisterController{
     state.value = HomeState.loading;
     try {
       user = await _repository.postUserApi(usuario);
-      print(user);
       state.value = HomeState.sucess;
     } catch (e) {
-      print(e);
       state.value = HomeState.error;
     }
   }

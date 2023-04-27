@@ -29,14 +29,15 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: AppColors.secundaryColorApp,
+        iconTheme: const IconThemeData(color: AppColors.blackColorApp),
         title: const Text(
-              "Cadastro", 
-              style: TextStyle(
-                color: AppColors.blackColorApp,
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
-              ),
-            ),
+          'Cadastro', 
+          style: TextStyle(
+            color: AppColors.blackColorApp,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Form(
@@ -47,25 +48,25 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
               TextFormField(
                 controller: _controllerNome,
                 decoration: const InputDecoration(label: Text('Nome')),
-                validator: (value) => value!.isEmpty ? "Por favor, insira seu nome." : null,
+                validator: (value) => value!.isEmpty ? 'Por favor, insira seu nome.' : null,
               ),
               TextFormField(
                 controller: _controllerTelefone,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(label: Text('Telefone')),
-                validator: (value) => value!.isEmpty ? "Por favor, insira seu Telefone." : null,
+                validator: (value) => value!.isEmpty ? 'Por favor, insira seu Telefone.' : null,
               ),
               TextFormField(
                 controller: _controllerEmail,
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(label: Text('Email')),
-                validator: (value) => value!.isEmpty ? "Por favor, insira seu Email." : null,
+                validator: (value) => value!.isEmpty ? 'Por favor, insira seu Email.' : null,
               ),
               TextFormField(
                 controller: _controllerNascimento,
                 keyboardType: TextInputType.datetime,
                 decoration: const InputDecoration(label: Text('Data de nascimento')),
-                validator: (value) => value!.isEmpty ? "Por favor, insira sua data de nascimento." : null,
+                validator: (value) => value!.isEmpty ? 'Por favor, insira sua data de nascimento.' : null,
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),

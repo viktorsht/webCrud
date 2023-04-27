@@ -11,10 +11,11 @@ class EditUserPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: AppColors.blackColorApp),
         backgroundColor: AppColors.secundaryColorApp,
-        title: Text(
-          "Editar Usuário: ${usuario.id}", 
+        title: const Text(
+          'Editar Usuário', 
           style: TextStyle(
             color: AppColors.blackColorApp,
             fontWeight: FontWeight.bold,

@@ -95,16 +95,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.secundaryColorApp,
-        title: const Text('CRUD Web Básico', 
-          style: TextStyle(
-              color: AppColors.blackColorApp,
-              fontWeight: FontWeight.bold,
-              fontSize: 25
-            ),
-          ),
-        centerTitle: true,
         elevation: 0,
+        backgroundColor: AppColors.secundaryColorApp,
+        iconTheme: const IconThemeData(color: AppColors.blackColorApp),
+        title: const Text(
+          'CRUD Web Básico', 
+          style: TextStyle(
+            color: AppColors.blackColorApp,
+            fontWeight: FontWeight.bold,
+            fontSize: 25
+          ),
+        ),
+        centerTitle: true,
       ),
       body: AnimatedBuilder(
         animation: controller.state,

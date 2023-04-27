@@ -26,7 +26,7 @@ class ListUser extends StatelessWidget {
             IconButton(
               onPressed: (){
                 //Navigator.of(context).pushNamed(RoutersApp.edit);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => EditFormField(user: user)));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => EditUserPage(usuario: user)));
               }, 
               color: AppColors.editColorApp,
               icon: const Icon(Icons.edit),

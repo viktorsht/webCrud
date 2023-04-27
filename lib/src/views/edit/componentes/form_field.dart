@@ -17,10 +17,10 @@ class EditFormField extends StatefulWidget {
 
 class _EditFormFieldState extends State<EditFormField> {
 
-    late TextEditingController controllerNome;
-    late TextEditingController controllerTelefone;
-    late TextEditingController controllerEmail;
-    late TextEditingController controllerNascimento;
+    final TextEditingController controllerNome = TextEditingController();
+    final TextEditingController controllerTelefone = TextEditingController();
+    final TextEditingController controllerEmail = TextEditingController();
+    final TextEditingController controllerNascimento = TextEditingController();
 
     final controller = EditController();
 
@@ -28,44 +28,25 @@ class _EditFormFieldState extends State<EditFormField> {
   @override
   void initState() {
     super.initState();
-    controllerNome = TextEditingController(text: widget.user.name);
-    controllerTelefone = TextEditingController(text: widget.user.telefone);
-    controllerEmail = TextEditingController(text: widget.user.email);
-    controllerNascimento = TextEditingController(text: widget.user.nascimento);
+    controllerNome.text = widget.user.name!;
+    controllerTelefone.text = widget.user.telefone!;
+    controllerEmail.text = widget.user.email!;
+    controllerNascimento.text = widget.user.nascimento!;
   }
 
   @override
   void dispose() {
     controllerNome.dispose();
-    controllerTelefone.dispose();
-    controllerEmail.dispose();
-    controllerNascimento.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: AppColors.secundaryColorApp,
-        title: Text(
-          "Editar kk Usuário: ${widget.user.id}", 
-          style: const TextStyle(
-            color: AppColors.blackColorApp,
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: Form(
+    return Form(
       child: Container(
         padding: const EdgeInsets.all(35),
         child: Column(
           children: [
-            Text("Nome: ${controllerNome.text}"),
-            Text("Nome User: ${widget.user.id}"),
             TextFormField(
               controller: controllerNome,
               decoration: const InputDecoration(label: Text('Nome')),
@@ -110,7 +91,7 @@ class _EditFormFieldState extends State<EditFormField> {
                           telefone: controllerTelefone.text,
                           email: controllerEmail.text,
                           nascimento: controllerNascimento.text,
-                          id: "1"
+                          id: widget.user.id
                         );
                         controller.start(user);
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -131,6 +112,6 @@ class _EditFormFieldState extends State<EditFormField> {
           ],
         ),
       )
-    ),);
+    );
   }
 }

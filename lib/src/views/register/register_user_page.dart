@@ -87,7 +87,6 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                           telefone: _controllerTelefone.text,
                           email: _controllerEmail.text,
                           nascimento: _controllerNascimento.text,
-                          id: "1"
                         );
                         controller.start(user);
                         ScaffoldMessenger.of(context).showSnackBar(

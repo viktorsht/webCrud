@@ -7,10 +7,10 @@ class EditController{
   User user = User();
   final state = ValueNotifier <HomeState>(HomeState.start);
 
-  Future start(String idUser) async {
+  Future start(User user) async {
     state.value = HomeState.loading;
     try {
-      user = await _repository.updateUserApi(idUser);
+      user = await _repository.updateUserApi(user);
       state.value = HomeState.sucess;
     } catch (e) {
       state.value = HomeState.error;

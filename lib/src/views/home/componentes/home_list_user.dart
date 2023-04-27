@@ -1,7 +1,8 @@
-import 'package:crudweb/src/controllers/edit_controller.dart';
 import 'package:crudweb/src/controllers/remove_controller.dart';
 import 'package:crudweb/src/routers/routers_app.dart';
 import 'package:crudweb/src/theme/app_colors.dart';
+import 'package:crudweb/src/views/edit/componentes/form_field.dart';
+import 'package:crudweb/src/views/edit/edit_user_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/user_model.dart';
@@ -24,7 +25,8 @@ class ListUser extends StatelessWidget {
           children: [
             IconButton(
               onPressed: (){
-                Navigator.of(context).pushNamed(RoutersApp.edit);
+                //Navigator.of(context).pushNamed(RoutersApp.edit);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => EditFormField(user: user)));
               }, 
               color: AppColors.editColorApp,
               icon: const Icon(Icons.edit),
@@ -34,14 +36,13 @@ class ListUser extends StatelessWidget {
               onPressed: (){
                 final controller = RemoveController();
                 controller.start(user.id!);
-                /*
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Usuário removido com sucesso!', style: TextStyle(color: AppColors.blackColorApp, fontWeight: FontWeight.w500),),
                     backgroundColor: AppColors.notificationColorApp,
                     behavior: SnackBarBehavior.floating
                   ),
-                );*/
+                );
                 Navigator.of(context).pushNamed(RoutersApp.home);
               }, 
               color: AppColors.removeColorApp,

@@ -23,9 +23,9 @@ class _HomePageState extends State<HomePage> {
       children: [
         const SizedBox(height: 16), // espaço entre o botão e a appBar
         Padding(
-          padding: const EdgeInsets.only(left: 16),
+          padding: const EdgeInsets.only(left: 16, right: 16),
           child: Container(
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.centerRight,
             child: ElevatedButton(
               style: ButtonApp.themeButtonAppPrimary,
               onPressed: () {
@@ -105,13 +105,6 @@ class _HomePageState extends State<HomePage> {
           ),
         centerTitle: true,
         elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: (){}, 
-            color: AppColors.blackColorApp,
-            icon: const Icon(Icons.search),
-          ),
-        ],
       ),
       body: AnimatedBuilder(
         animation: controller.state,

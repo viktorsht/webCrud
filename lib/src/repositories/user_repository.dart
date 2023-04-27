@@ -21,17 +21,15 @@ class UserRepository{
     return User.fromJson(jsonDecode(response.body));
   }
 
-  Future<User> updateUserApi(String idUser) async {
-    final url = Uri.parse('${DataApi.mockapiUrl}/$idUser}');
-    final response = await http.put(url);
+  Future<User> updateUserApi(User user) async {
+    final url = Uri.parse('${DataApi.mockapiUrl}/${user.id}');
+    final response = await http.put(url, body: user.toJson());
     return User.fromJson(jsonDecode(response.body));
   }
-
 
   Future<User> deleteUserApi(String idUser) async {
-    final url = Uri.parse('${DataApi.mockapiUrl}/$idUser');
+    final url = Uri.parse('${DataApi.mockapiUrl}/$idUser}');
     final response = await http.delete(url);
     return User.fromJson(jsonDecode(response.body));
-  }
-  
+  }  
 }
